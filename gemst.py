@@ -10,10 +10,16 @@ from langchain.chains.llm import LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains import RetrievalQA
-
 # Set up Google Gemini API Key
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAl67MS8iGGcAnMi9RJljSjWtcgRagiqOE"
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+import os
+from dotenv import load_dotenv
+# Set up Google Gemini API Key
+load_dotenv()
+api_key = os.getenv("API_KEY")
+
+
+# Set up Google Gemini API key
+genai.configure(api_key=api_key)
 
 # Streamlit UI
 st.title("📄 PDF-based RAG System with Gemini")
@@ -54,7 +60,7 @@ if uploaded_file is not None:
     retriever = vector.as_retriever(search_type="similarity", search_kwargs={"k": 3})
 
     # Define Gemini LLM
-    llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-thinking-exp-1219", google_api_key="AIzaSyAl67MS8iGGcAnMi9RJljSjWtcgRagiqOE")
+    llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-thinking-exp-1219", google_api_key=api_key)
 
     # Prompt Template
     prompt = """

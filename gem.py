@@ -7,11 +7,15 @@ from langchain.prompts import PromptTemplate
 from langchain.chains.llm import LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain.chains import RetrievalQA
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+api_key = os.getenv("API_KEY")
+
 
 # Set up Google Gemini API key
-import os
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAl67MS8iGGcAnMi9RJljSjWtcgRagiqOE"
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=api_key)
 
 # Load the PDF
 loader = PDFPlumberLoader("temp.pdf")
