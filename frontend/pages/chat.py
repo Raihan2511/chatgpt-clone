@@ -11,6 +11,12 @@ from langchain.chains.llm import LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain.chains import RetrievalQA
 from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+api_key = os.getenv("API_KEY")
+
 
 
 def auto_scroll():
@@ -105,7 +111,7 @@ def show():
         # ✅ Define LLM & Prompt
 
         # llm = Ollama(model="deepseek-r1:1.5b")
-        llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-thinking-exp-1219", google_api_key="AIzaSyAl67MS8iGGcAnMi9RJljSjWtcgRagiqOE")
+        llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-thinking-exp-1219", google_api_key=api_key)
 
         prompt = """
         Use the following pieces of context to answer the question:

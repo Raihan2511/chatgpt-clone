@@ -4,8 +4,13 @@ from backend.models.database import get_db
 from backend.models.chat_history import ChatHistory
 import streamlit as st
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os
 
-genai.configure(api_key="AIzaSyAl67MS8iGGcAnMi9RJljSjWtcgRagiqOE")
+load_dotenv()
+api_key = os.getenv("API_KEY")
+
+genai.configure(api_key=api_key)
 
 
 # ✅ Function to generate AI responses
